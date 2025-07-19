@@ -1,4 +1,4 @@
-package main
+package relearndsa
 
 func twoSum(nums []int, target int) []int {
 	data := map[int]int{}
