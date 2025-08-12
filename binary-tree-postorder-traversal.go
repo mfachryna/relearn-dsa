@@ -1,25 +1,32 @@
 package relearndsa
 
 /**
- * Definition for a binary tree node.
- * type TreeNode struct {
+ * Definition for singly-linked list.
+ * type ListNode struct {
  *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
+ *     Next *ListNode
  * }
  */
-func postorderTraversal(root *TreeNode) []int {
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	// defer runtime.GC()
+	// if headA == nil || headB == nil {
+	//     return nil
+	// }
+	var pointA, pointB *ListNode
+	pointA, pointB = headA, headB
 
-	var res []int
-	var traverse func(node *TreeNode)
-	traverse = func(node *TreeNode) {
-		if node == nil {
-			return
+	for pointA != pointB {
+		if pointA == nil {
+			pointA = headB
+		} else {
+			pointA = pointA.Next
 		}
-		traverse(node.Left)
-		traverse(node.Right)
-		res = append(res, node.Val)
+
+		if pointB == nil {
+			pointB = headA
+		} else {
+			pointB = pointB.Next
+		}
 	}
-	traverse(root)
-	return res
+	return pointA
 }
